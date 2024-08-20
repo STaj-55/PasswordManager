@@ -64,6 +64,22 @@ def get_pass(site, key):
     else:
         return "The password file does not exist."
     
+#Function to remove passwords
+def lose_pass(site):
+    if os.path.exists(pass_file):
+        with open(pass_file, "r") as file:
+            passwords = json.load(file)
+
+        if site in passwords:
+            del passwords[site]
+            with open(pass_file, "w") as file:
+                json.dump(passwords, file)
+            print(f"Password {site} has been removed.")
+        else:
+            print("No password found for htis website.")
+    else:
+        print("Password file does not exist.")
+    
 #Main function
 def main():
     key = load_key()
@@ -72,7 +88,8 @@ def main():
         print("\nDime Man Assists")
         print("1. Make and save a new pass.")
         print("2. Grab a pass.")
-        print("3. Exit")
+        print("3. Remove a pass.")
+        print("4. Exit")
         choice = input("Select what you would like to do: ")
 
         if choice == "1":
@@ -87,6 +104,10 @@ def main():
             print(f"Password for {site}: {password}")
 
         elif choice == "3":
+            site = input("Enter the website name: ")
+            lose_pass(site)
+
+        elif choice == "4":
             break
         else:
             print("That's not an option bucko. :( ")
