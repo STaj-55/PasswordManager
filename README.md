@@ -8,8 +8,10 @@ There are several functions that are put together in this program to create this
 
 ## Current Available Options:
 Create a password
+
 Receive a password
 
+Remove a password
+
 ## In-Progress
-Remove Password
 MFA
